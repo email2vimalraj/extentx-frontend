@@ -31,6 +31,9 @@ const ALL_PROJECTS_QUERY = gql `
         project {
             id
             name
+            reports {
+                failParentLength
+            }
         }
     }
 `
