@@ -1,15 +1,22 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
+import { Grid, Row, Navbar } from 'react-bootstrap'
 
 class Header extends Component {
 
     render() {
         return (
-            <div className='flex pa1 justify-between nowrap orange'>
-                <div className='flex flex-fixed black'>
-                    <div className='fw7 mr1'>ExtentX</div>
-                </div>
-            </div>
+            <Grid fluid>
+                <Row>
+                    <Navbar>
+                        <Navbar.Header>
+                            <Navbar.Brand>
+                                <a href="/">ExtentX</a>
+                            </Navbar.Brand>
+                        </Navbar.Header>
+                    </Navbar>
+                </Row>
+            </Grid>
         );
     }
 
