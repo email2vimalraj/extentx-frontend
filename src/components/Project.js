@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 import { Col, Panel, Label } from 'react-bootstrap'
+import { PieChart, Pie, Cell, Legend } from 'recharts'
 
 class Project extends Component {
     
@@ -29,12 +30,31 @@ class Project extends Component {
             panelStyle = 'danger';
         }
 
+        let pieData = [
+            { name: 'Pass', value: reportStat.pass, color: '#50C878' },
+            { name: 'Fail', value: reportStat.fail, color: '#C21807' }
+        ]
+
         return (
             <Col xs={12} sm={12} md={4} lg={4}>
                 <Panel header={title} bsStyle={panelStyle}>
-                    <p><Label bsStyle='info'>{this.props.project.reports.length}</Label> runs</p>
-                    <p><Label bsStyle='success'>{reportStat.pass}</Label> passed</p>
-                    <p><Label bsStyle='danger'>{reportStat.fail}</Label> failed</p>
+                    <center>
+                        <h4>Total Runs: <Label bsStyle='info'>{this.props.project.reports.length}</Label></h4>
+                        <PieChart width={300} height={200}>
+                            <Pie 
+                                data={pieData} 
+                                dataKey="value"
+                                fill="#8884d8" 
+                                label>
+                                {
+                                    pieData.map((entry, index) => 
+                                        <Cell key={index} fill={entry.color} />
+                                    )
+                                }
+                            </Pie>
+                            <Legend />
+                        </PieChart>
+                    </center>
                 </Panel>
             </Col>
         );
